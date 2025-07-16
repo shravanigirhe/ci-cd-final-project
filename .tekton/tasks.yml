@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: cleanup
+spec:
+  description: >-
+    This task cleans up the workspace before running other tasks.
+  workspaces:
+    - name: source
+  steps:
+    - name: cleanup
+      image: ubuntu
+      script: |
+        echo "🧹 Cleaning workspace..."
+        rm -rf /workspace/source/*
